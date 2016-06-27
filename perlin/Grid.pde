@@ -6,7 +6,7 @@
 int spacing, cols, rows;
 float[][] grid;
 float flying = 0;
-float flyingInc = 0.05;
+float flyingInc = 0.08;
 
 void gridSetup(int w, int h, int spacing) {
   this.cols = w/spacing;

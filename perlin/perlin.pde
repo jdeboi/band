@@ -2,6 +2,7 @@
 PImage img;
 PImage img2;
 int zVal = -10000;
+Flyers fly;
 
 void setup() {
   img = loadImage("/Users/jdeboi/Documents/Processing/projects/band/media/images/swirl.png");
@@ -11,14 +12,16 @@ void setup() {
   
   gridSetup(2000, 1600, 20);
   setupSound();
+  
+  fly = new Flyers(10);
 }
 
 void draw() {
-  background(0);
+  background(255);
   strokeWeight(1);
-  image(img2, 0, 0,width,height);
+  //image(img2, 0, 0,width,height);
 
-  
+  fly.drawFlyers();
   setBands();
   drawGrid();
   
@@ -33,7 +36,7 @@ void draw() {
 
 void keyPressed() {
   if (keyCode == UP) {
-    zVal = -1000;
+    fly.activateFlyer();
   }
 }
 
@@ -46,7 +49,7 @@ color getVertexColor(int x, int y) {
     return img.pixels[img.width/cols*x+ y*img.width];            // image
   //return color(255,255,255);
   }
-  else return color(0);
+  else return color(255);
 }
 
 
