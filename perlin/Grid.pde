@@ -38,7 +38,7 @@ void drawGrid() {
   for(int y = 0; y < rows-1; y++) {
     beginShape(TRIANGLE_STRIP);
     for(int x = 0; x < cols; x++) {
-      fill(getVertexColor(x,y),100);
+      fill(getVertexColor(x,y),gridOpacity);
       vertex(x * spacing, y * spacing, grid[x][y]);
       vertex(x * spacing, (y+1) * spacing, grid[x][y+1]);
     }

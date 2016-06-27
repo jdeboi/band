@@ -6,7 +6,7 @@ class Flyers {
   Flyers(int num) {
     flyers = new Flyer[num];
     for(int i = 0; i < flyers.length; i++ ) {
-      flyers[i] = new Flyer(40);
+      flyers[i] = new Flyer(int(random(18,40)));
     }
   }
   
