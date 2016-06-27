@@ -1,4 +1,8 @@
+import camera3D.Camera3D;
+PGraphics label;
+Camera3D camera3D;
 
+  
 PImage img;
 PImage bkimg;
 int zVal = -10000;
@@ -9,6 +13,10 @@ color defaultColor = color(0);
 int gridOpacity = 70;
 
 void setup() {
+  camera3D = new Camera3D(this);
+  camera3D.setBackgroundColor(color(0));
+  camera3D.renderDefaultAnaglyph().setDivergence(1);
+  
   img = loadImage("/Users/jdeboi/Documents/Processing/projects/band/media/images/swirl.png");
   bkimg = loadImage("/Users/jdeboi/Documents/Processing/projects/band/media/images/galaxy2.jpg");
   img.loadPixels();
@@ -20,15 +28,21 @@ void setup() {
   fly = new Flyers(100);
 }
 
-void draw() {
 
+void preDraw() {
   setBands();
   setDefaultGrid();
+  zVal+=15;
+}
+
+void draw() {
+
+  
   drawGrid();
   
   fly.drawFlyers();
   
-  zVal+=15;
+  
 }
 
 void setDefaultGrid() {
