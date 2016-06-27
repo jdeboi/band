@@ -22,12 +22,12 @@ void draw() {
   setBands();
   drawGrid();
   
-
-  pushMatrix();
-  translate(width/2, height/2+350);
-  rotateZ(radians(180));
-  drawGrid();  
-  popMatrix();
+  // double grid
+  //pushMatrix();
+  //translate(width/2, height/2+350);
+  //rotateZ(radians(180));
+  //drawGrid();  
+  //popMatrix();
   zVal+=15;
 }
 
@@ -41,20 +41,15 @@ void keyPressed() {
 color getVertexColor(int x, int y) {
   int tempx = int(x * (1.0* myNumBands/cols));
   if(y < bands[tempx]/1.6) {
-    return getBandColor();
+  // return color(Wheel(int(tempx * 256.0/myNumBands)));         // rainbow
+  // return color(Wheel(int(map(tempx,0,myNumBands,60,190))));   // green blue
+    return img.pixels[img.width/cols*x+ y*img.width];            // image
+  //return color(255,255,255);
   }
   else return color(0);
 }
 
-color getBandColor() {
-  // rainbow
-  // return color(Wheel(int(tempx * 256.0/myNumBands)));
-  // green blue
-  //return color(Wheel(int(map(tempx,0,myNumBands,60,190))));
-  // image
-  //  return img.pixels[img.width/cols*x+ y*img.width];
-  return color(255,255,255);
-}
+
 
 
 // modified from Adafruit Industries Neopixel library
