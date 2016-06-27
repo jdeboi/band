@@ -6,7 +6,7 @@
 int spacing, cols, rows;
 float[][] grid;
 float flying = 0;
-float flyingInc = 0.1;
+float flyingInc = 0.05;
 
 void gridSetup(int w, int h, int spacing) {
   this.cols = w/spacing;
@@ -38,7 +38,7 @@ void drawGrid() {
   for(int y = 0; y < rows-1; y++) {
     beginShape(TRIANGLE_STRIP);
     for(int x = 0; x < cols; x++) {
-      fill(getVertexGreenBlue(x,y),100);
+      fill(getVertexColor(x,y),100);
       vertex(x * spacing, y * spacing, grid[x][y]);
       vertex(x * spacing, (y+1) * spacing, grid[x][y+1]);
     }

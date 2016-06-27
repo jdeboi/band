@@ -5,26 +5,28 @@ int zVal = -10000;
 
 void setup() {
   img = loadImage("/Users/jdeboi/Documents/Processing/projects/band/media/images/swirl.png");
-  img2 = loadImage("/Users/jdeboi/Documents/Processing/projects/band/media/images/yoda2.png");
+  img2 = loadImage("/Users/jdeboi/Documents/Processing/projects/band/media/images/galaxy2.jpg");
   img.loadPixels();
   size(1200, 800, P3D);
   
-  gridSetup(1000, 1600, 40);
+  gridSetup(2000, 1600, 20);
   setupSound();
 }
 
 void draw() {
   background(0);
   strokeWeight(1);
-  //image(img, 0, 0,width,height);
+  image(img2, 0, 0,width,height);
 
   
   setBands();
   drawGrid();
+  
 
   pushMatrix();
-  translate(width/2,0,zVal);
-  image(img2, 0, 0);   
+  translate(width/2, height/2+350);
+  rotateZ(radians(180));
+  drawGrid();  
   popMatrix();
   zVal+=15;
 }
@@ -36,32 +38,24 @@ void keyPressed() {
 }
 
 
-
-
-color getVertexRainbow(int col, int row) {
-  // 100 bands and 60 cols. 
-  int tempx = int(col * (1.0* myNumBands/cols));
-  if(row < bands[tempx]/1.6) {
-    return color(Wheel(int(tempx * 256.0/myNumBands)));
-  }
-  else return color(0);
-}
-
-color getVertexGreenBlue(int x, int y) {
+color getVertexColor(int x, int y) {
   int tempx = int(x * (1.0* myNumBands/cols));
   if(y < bands[tempx]/1.6) {
-    return color(Wheel(int(map(tempx,0,myNumBands,60,90))));
+    return getBandColor();
   }
   else return color(0);
 }
 
-color getVertexImage(int x, int y) {
-  int tempx = int(x * (1.0* myNumBands/cols));
-  if(y < bands[tempx]/1.6) {
-    return img.pixels[img.width/cols*x+ y*img.width];
-  }
-  else return color(0);
+color getBandColor() {
+  // rainbow
+  // return color(Wheel(int(tempx * 256.0/myNumBands)));
+  // green blue
+  //return color(Wheel(int(map(tempx,0,myNumBands,60,190))));
+  // image
+  //  return img.pixels[img.width/cols*x+ y*img.width];
+  return color(255,255,255);
 }
+
 
 // modified from Adafruit Industries Neopixel library
 color Wheel(int WheelPos) {
