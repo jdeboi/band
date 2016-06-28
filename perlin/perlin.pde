@@ -10,7 +10,7 @@ int defaultGridMode = 0;
 int colorMode = 0;
 color defaultColor = color(0);
 int gridOpacity = 70;
-
+boolean flyersFlash = false;
 
 
 void setup() {
@@ -98,8 +98,11 @@ void setDefaultGrid() {
   case 4: {
       defaultColor = color(0);
       background(0);
+      pushMatrix();
+      translate(-750,-600,-900);
       tint(255, 127); 
-      image(bkImg, 0, 0, width, height);
+      image(bkImg, 0, 0, width*3, height*3);
+      popMatrix();
       strokeWeight(1);
       stroke(0);
       break;
@@ -108,8 +111,11 @@ void setDefaultGrid() {
   case 5: {
       defaultColor = color(0);
       background(0);
+      pushMatrix();
+      translate(-750,-600,-900);
       tint(255, 127); 
-      image(bkImg, 0, 0, width, height);
+      image(bkImg, 0, 0, width*3, height*3);
+      popMatrix();
       strokeWeight(1);
       stroke(0);
       pushMatrix();

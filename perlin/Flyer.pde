@@ -16,12 +16,18 @@ class Flyer {
   
   void drawFlyer() {
     if(!hidden) {
-      stroke(0);
-      //fill(c,255-rot*4);
-      fill(255);
-      if(defaultGridMode == 2 || defaultGridMode == 3) {
-        stroke(255);
-        fill(0);
+      if(flyersFlash) {
+        stroke(0);
+        fill(0,255,255);
+      }
+      else {
+        stroke(0);
+        //fill(c,255-rot*4);
+        fill(255);
+        if(defaultGridMode == 2 || defaultGridMode == 3) {
+          stroke(255);
+          fill(0);
+        }
       }
       pushMatrix();
         //translate(width/2, height/2, 0);

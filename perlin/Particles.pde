@@ -45,10 +45,10 @@ class Particle {
     float start = r * 4;
     if(starsBright) start = r*10;
     for (float r1 = start; r1 > 0; --r1) {
+      
       fill(255, h);
-      if(defaultGridMode == 0 || defaultGridMode == 1) {
-        fill(0, h);
-      }
+      if(defaultGridMode == 0 || defaultGridMode == 1) fill(0, h);
+   
       noStroke();
       pushMatrix();
       translate(0,0,-50);
