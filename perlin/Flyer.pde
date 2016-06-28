@@ -22,7 +22,7 @@ class Flyer {
       }
       else {
         stroke(0);
-        fill(c,rot);
+        fill(c,255-rot*4);
       }
       pushMatrix();
         //translate(width/2, height/2, 0);
