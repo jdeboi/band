@@ -75,6 +75,7 @@ void setDefaultGrid() {
       background(255);
       strokeWeight(1);
       stroke(255);
+      if(colorMode == 3) stroke(0);
       break;
     }
   // black with white lines  
@@ -134,10 +135,8 @@ void keyPressed() {
   else if (key == 'q') colorMode = 0;        // rainbow swirl image
   else if (key == 'w') colorMode = 1;        // green blue
   else if (key == 'e') colorMode = 2;        // rainbow
-  else if (key == 'r') {                     // white
-    colorMode = 3;        
-    if(defaultGridMode == 1) defaultGridMode = 0;
-  }
+  else if (key == 'r') colorMode = 3;                      // white
+           
   else if (key == 's') starsOn =! starsOn;
 }
 

@@ -68,7 +68,7 @@ class Particle {
   void update() {
     x = x + j*fx;
     y = y + i*fy;
-    if (y > height-r) i=-1;
+    if (y > height/2-r) i=-1;
     if (y < 0+r) i=1;
     if (x > width-r) j=-1;
     if (x < 0+r) j=1;
