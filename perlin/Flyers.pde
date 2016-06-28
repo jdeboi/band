@@ -17,7 +17,9 @@ class Flyers {
   }
   
   void activateFlyer() {
-    flyers[currentFlyer].hidden = false;
+    flyers[currentFlyer].activate();
+    if(currentFlyer > 0) flyers[currentFlyer - 1].selected = false;
+    else flyers[flyers.length-1].selected = false;
     currentFlyer++;
     if(currentFlyer == flyers.length) currentFlyer = 0;
     flyers[currentFlyer].reset();

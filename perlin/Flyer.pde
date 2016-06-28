@@ -1,8 +1,13 @@
+int wheelP = 0;
+
 class Flyer {
   
   int x, y, z, scale, mode;
   int rot = 0;
   boolean hidden;
+  int timeStamp = 0;
+  boolean selected = false;
+  color c;
   
   Flyer(int scale) {
     this.scale = scale;
@@ -11,8 +16,14 @@ class Flyer {
   
   void drawFlyer() {
     if(!hidden) {
-      stroke(0);
-      fill(255);
+      if(!selected) {
+        stroke(0);
+        fill(255);
+      }
+      else {
+        stroke(0);
+        fill(c,rot);
+      }
       pushMatrix();
         //translate(width/2, height/2, 0);
         translate(x,y,z);
@@ -94,5 +105,12 @@ class Flyer {
     z = -800;
     rot = 0;
     mode = int(random(3));
+    selected = false;
+  }
+  
+  void activate() {
+    hidden = false;
+    selected = true;
+    c = Wheel(int(random(200)));
   }
 }
