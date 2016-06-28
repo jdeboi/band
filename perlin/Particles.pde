@@ -4,6 +4,7 @@ ArrayList particles;
 boolean flag=false;
 int distance=50; 
 boolean starsOn = false;
+boolean starsBright = false;
 
 void setupParticles(int num) {
   particles = new ArrayList();
@@ -41,7 +42,9 @@ class Particle {
   void display() {
     //---------------blur/glow ----------
     float h = 3;
-    for (float r1 = r*4; r1 > 0; --r1) {
+    float start = r * 4;
+    if(starsBright) start = r*10;
+    for (float r1 = start; r1 > 0; --r1) {
       fill(255, h);
       noStroke();
       pushMatrix();

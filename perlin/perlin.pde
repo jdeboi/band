@@ -22,7 +22,7 @@ void setup() {
   //camera3D.renderDefaultAnaglyph().setDivergence(1);
 
   gridImg = loadImage("/Users/jdeboi/Documents/Processing/projects/band/media/images/swirl.png");
-  bkImg = loadImage("/Users/jdeboi/Documents/Processing/projects/band/media/images/galaxy2.jpg");
+  bkImg = loadImage("/Users/jdeboi/Documents/Processing/projects/band/media/images/galaxy3.jpg");
   gridImg.loadPixels();
 
 
@@ -32,6 +32,12 @@ void setup() {
   fly = new Flyers(100);
 
   setupParticles(100);
+  
+  beat = new BeatDetect(myAudio.bufferSize(), myAudio.sampleRate());
+  beat.setSensitivity(300);  
+  kickSize = snareSize = hatSize = 16;
+  // make a new beat listener, so that we won't miss any buffers for the analysis
+  bl = new BeatListener(beat, myAudio);  
 }
 
 
@@ -47,38 +53,40 @@ void draw() {
 
   fly.drawFlyers();
 
-
+  if(beat.isHat()) starsBright = true;
+  else starsBright = false;
   drawParticles();
 }
 
 void setDefaultGrid() {
   switch(defaultGridMode) {
-  case 0: 
-    {
+    // white with black lines
+  case 0: {
       defaultColor = color(255);
       background(255);
       strokeWeight(1);
       stroke(0);
       break;
     }
-  case 1: 
-    {
+    
+  // all white  
+  case 1: {
       defaultColor = color(255);
       background(255);
       strokeWeight(1);
       stroke(255);
       break;
     }
-  case 2: 
-    {
+  // black with white lines  
+  case 2: {
       defaultColor = color(0);
       background(0);
       strokeWeight(1);
       stroke(255);
       break;
     }
-  case 3: 
-    {
+  // all black  
+  case 3: {
       defaultColor = color(0);
       background(0);
       strokeWeight(1);
@@ -86,20 +94,20 @@ void setDefaultGrid() {
       break;
     }
     // image background
-  case 4: 
-    {
+  case 4: {
       defaultColor = color(0);
       background(0);
+      tint(255, 127); 
       image(bkImg, 0, 0, width, height);
       strokeWeight(1);
       stroke(0);
       break;
     }
     // double grid
-  case 5: 
-    {
+  case 5: {
       defaultColor = color(0);
       background(0);
+      tint(255, 127); 
       image(bkImg, 0, 0, width, height);
       strokeWeight(1);
       stroke(0);
@@ -116,16 +124,20 @@ void setDefaultGrid() {
 
 void keyPressed() {
   if (keyCode == UP) fly.activateFlyer();
-  else if (key == '0') defaultGridMode = 0;
-  else if (key == '1') defaultGridMode = 1;
-  else if (key == '2') defaultGridMode = 2;
-  else if (key == '3') defaultGridMode = 3;
-  else if (key == '4') defaultGridMode = 4;
-  else if (key == '5') defaultGridMode = 5;
-  else if (key == 'q') colorMode = 0;
-  else if (key == 'w') colorMode = 1;
-  else if (key == 'e') colorMode = 2;
-  else if (key == 'r') colorMode = 3;
+  else if (key == '0') defaultGridMode = 0;  // white with black lines
+  else if (key == '1') defaultGridMode = 1;  // all white
+  else if (key == '2') defaultGridMode = 2;  // black with white lines
+  else if (key == '3') defaultGridMode = 3;  // all black
+  else if (key == '4') defaultGridMode = 4;  // image
+  else if (key == '5') defaultGridMode = 5;  // double grids
+  
+  else if (key == 'q') colorMode = 0;        // rainbow swirl image
+  else if (key == 'w') colorMode = 1;        // green blue
+  else if (key == 'e') colorMode = 2;        // rainbow
+  else if (key == 'r') {                     // white
+    colorMode = 3;        
+    if(defaultGridMode == 1) defaultGridMode = 0;
+  }
   else if (key == 's') starsOn =! starsOn;
 }
 

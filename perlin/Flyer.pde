@@ -16,13 +16,12 @@ class Flyer {
   
   void drawFlyer() {
     if(!hidden) {
-      if(!selected) {
-        stroke(0);
-        fill(255);
-      }
-      else {
-        stroke(0);
-        fill(c,255-rot*4);
+      stroke(0);
+      //fill(c,255-rot*4);
+      fill(255);
+      if(defaultGridMode == 2 || defaultGridMode == 3) {
+        stroke(255);
+        fill(0);
       }
       pushMatrix();
         //translate(width/2, height/2, 0);
@@ -111,6 +110,10 @@ class Flyer {
   void activate() {
     hidden = false;
     selected = true;
-    c = Wheel(int(random(200)));
+    //c = Wheel(int(random(190,220)));
+    c = 0;
+    if(defaultGridMode == 2 || defaultGridMode == 3) {
+      c = color(255);
+    }
   }
 }
