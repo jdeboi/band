@@ -16,57 +16,24 @@ class MidiObj {
   
   void display() {
     vel--;
-    if(vel < 0) vel = 0;
-    colorMode(HSB, 127);
+    if(vel < 10) vel = 10;
+    //stroke(0,50);
     noStroke();
     fill(pitch, 127, 127, 10);
     
     
     pushMatrix();
     int xVal = 600;
-    int yVal = vel*2;
-    translate(width/2-xVal/2, height/2-yVal/2, -pitch*20+150);
-     
-    
+    int yVal = vel*(int)(height/127.0);
+    translate(width/2-xVal/2, height/2-yVal/2, -pitch*20);
+    //rotateY(radians(85)); 
+    //rotateZ(radians(45));
+    rotateX(radians(50));
+    translate(0,200,0);
     int zVal = 20;
     rect(0, 0, xVal, yVal);
     popMatrix();
-    /* 
-    beginShape(QUADS);
-    vertex(-xVal,  yVal,  zVal);
-    vertex( xVal,  yVal,  zVal);
-    vertex( xVal,  -yVal,  zVal);
-    vertex(-xVal,  -yVal,  zVal);
-  
-    vertex( xVal,  yVal,  zVal);
-    vertex( xVal,  yVal,  -zVal);
-    vertex( xVal,  -yVal,  -zVal);
-    vertex( xVal,  -yVal,  zVal);
-  
-    vertex( -xVal,  yVal,  -zVal);
-    vertex(-xVal,  yVal,  -zVal);
-    vertex(-xVal,  -yVal,  -zVal);
-    vertex( xVal,  -yVal,  -zVal);
-  
-    vertex(-xVal,  yVal,  -zVal);
-    vertex(-xVal,  yVal,  zVal);
-    vertex(-xVal,  -yVal,  zVal);
-    vertex(-xVal,  -yVal,  -zVal);
-  
-    vertex(-xVal,  yVal,  -zVal);
-    vertex(xVal,  yVal,  -zVal);
-    vertex( xVal,  yVal,  zVal);
-    vertex(-xVal,  yVal,  zVal);
-
-    vertex(-xVal,  -yVal,  -zVal);
-    vertex( xVal,  -yVal,  -zVal);
-    vertex( xVal,  -yVal,  zVal);
-    vertex(-xVal,  -yVal,  zVal);
-
-    endShape();
-    popMatrix();
-    //printNote();
-    */
+    
   }
   
   void noteOff() {

@@ -13,10 +13,9 @@ long lastUpdated = 0;
 
 void setup() {
   size(900, 600, P3D);
-  background(0);
   initMidi();
   initMidiObjs();
-  //colorMode(HSB, 127);
+  colorMode(HSB, 127);
 }
 
 void draw() {
