@@ -1,5 +1,6 @@
 int wheelP = 0;
 
+int flyerCount = 0;
 class Flyer {
   
   int x, y, z, scale, mode;
@@ -45,6 +46,20 @@ class Flyer {
     }
   }
   
+  void draw2Flyer() {
+    
+    if(!hidden) {
+      
+      flyerCount++;
+      pushMatrix();
+        translate(width/2, height/2, 0);
+        if(flyerCount <8) 
+        pointLight(red(c), green(c), blue(c), x, y, z);
+        z+=10; 
+        
+      popMatrix();
+    }
+  }
   
   void setPyramid() {
     beginShape(TRIANGLES);

@@ -50,7 +50,7 @@ void setup() {
   
 
   minim   = new Minim(this);
-  myAudio = minim.loadFile("crushproof.mp3");
+  myAudio = minim.loadFile("/Users/jdeboi/Documents/Processing/projects/band/media/music/crushproof.mp3");
   myAudio.play();
 
   myAudioFFT = new FFT(myAudio.bufferSize(), myAudio.sampleRate());
