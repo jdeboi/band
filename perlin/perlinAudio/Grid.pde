@@ -33,13 +33,13 @@ void setAudioGrid() {
   for(int y = 0; y < rows/2; y++) {
     for(int x = 0; x < cols; x++) {
       float f = getFreq(map(x, 0, cols, 0, 100));
-      grid[x][y] = f*10/y;
+      grid[x][y] = f*y/10.0;
     }
   }
   for(int y = rows/2; y < rows; y++) {
     for(int x = 0; x < cols; x++) {
       float f = getFreq(map(x, 0, cols, 0, 100));
-      grid[x][y] = f*10/y;
+      grid[x][y] = f*(y - rows)/10.0;
     }
   }
 }
@@ -65,7 +65,7 @@ void drawGrid() {
 }
 
 void drawTexturedGrid() {
-  setGrid();
+  setAudioGrid();
   pushMatrix();
   translate(width/2,height/2);
   rotateX(radians(80));
